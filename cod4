@@ -1,0 +1,36 @@
+# version: Python3
+from DobotEDU import *
+
+posX = 270
+posY = 70
+posZ = -36.5
+
+deixarY = -130
+deixarX = 270
+
+for i  in range(8):
+  if i == 4:
+    posX+=20
+    posY=70
+    deixarY= -70
+    posZ=-36.5
+    
+    
+  m_lite.set_homecmd()
+  m_lite.set_ptpcmd(ptp_mode=2, x=posX, y=posY, z=20, r=0)
+  m_lite.set_endeffector_suctioncup(enable=True, on=True)
+  m_lite.set_ptpcmd(ptp_mode=2, x=posX, y=posY, z=-40.5, r=0)
+  
+  m_lite.set_ptpcmd(ptp_mode=2, x=posX, y=posY, z=20, r=0)
+  m_lite.set_ptpcmd(ptp_mode=2, x=deixarX, y=deixarY, z=20, r=0)
+  m_lite.set_ptpcmd(ptp_mode=2, x=deixarX, y=deixarY, z=posZ, r=0)
+  m_lite.set_endeffector_suctioncup(enable=False, on=False)
+  m_lite.set_ptpcmd(ptp_mode=2, x=deixarX, y=deixarY, z=0, r=0)
+  
+  posZ+=10
+  if posY > 0:
+    posY+=20
+  else:
+    posY-=20
+    
+m_lite.set_homecmd()
